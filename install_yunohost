@@ -234,6 +234,7 @@ tmp_clone_packages() {
     cd yunohost
     git checkout stretch
 
+    cd /ynh-dev/
     make repackage
     make install
 }
