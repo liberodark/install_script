@@ -1,14 +1,9 @@
 
 repackage:
-	cd /ynh-dev/
-	rm -f yunohost_2*
-	cd yunohost
-	debuild -us -uc
-	cd /ynh-dev/
+	cd /ynh-dev/; rm -f yunohost_2*; cd yunohost; debuild -us -uc
 
 install:
-	cd /ynh-dev/;
-	debconf-set-selections < debconf; gdebi /ynh-dev/yunohost*.deb -n
+	cd /ynh-dev/; debconf-set-selections < debconf; export SUDO_FORCE_REMOVE=yes; gdebi /ynh-dev/yunohost*.deb -n
 
 uninstall:
 	apt remove slapd yunohost moulinette --purge -y

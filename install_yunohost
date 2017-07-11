@@ -182,8 +182,8 @@ setup_package_source() {
     local CUSTOMAPT=/etc/apt/sources.list.d/yunohost.list
 
     # Check current system version and dependencies
-    if [[ $(lsb_release -c | awk '{print $2}') != jessie ]]; then
-        echo "Current $DISTRIB only works on Debian Jessie for the moment."
+    if [[ $(lsb_release -c | awk '{print $2}') != stretch ]]; then
+        echo "This script is designed to work only on Debian Stretch for the moment."
         return 1
     elif [ ! -d /run/systemd/system ]; then
         echo "Current $DISTRIB only works with systemd for the moment."
@@ -202,12 +202,12 @@ setup_package_source() {
     fi
 
     # Add YunoHost repository key to the keyring
-    wget -O- https://repo.yunohost.org/yunohost.asc -q | apt-key add - -qq > /dev/null
+    wget -O- https://repo.yunohost.org/yunohost.asc -q | apt-key add - > /dev/null
 
 
-    ### FIXME / Rspamd upstream repo
-    #wget -O- https://rspamd.com/apt-stable/gpg.key | apt-key add -
-    #echo "deb http://rspamd.com/apt-stable/ stretch main" > /etc/apt/sources.list.d/rspamd.list
+    ### FIXME MAYBE / Rspamd upstream repo
+    wget -O- https://rspamd.com/apt-stable/gpg.key | apt-key add -
+    echo "deb http://rspamd.com/apt-stable/ stretch main" > /etc/apt/sources.list.d/rspamd.list
 }
 
 tmp_clone_packages() {
@@ -490,7 +490,7 @@ step confirm_installation          || die "Installation cancelled at your reques
 step setup_package_source          || die "Setting up deb package sources failed" 7
 step apt_update                    || die "Error caught during 'apt-get update'" 8
 
-# TMP / FIXME - tmp dev on stretch
+# TMP / FIXME MAYBE - tmp dev on stretch
 step tmp_clone_packages            || die "Derp" 666
 
 exit 0
