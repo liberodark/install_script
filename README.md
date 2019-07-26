@@ -10,7 +10,7 @@ Only Debian 9/Stretch systems running with kernel >= 3.12 [systemd](https://wiki
 
 With a `curl|bash` syntax : 
 
-    $ curl https://raw.githubusercontent.com/YunoHost/install_script/stretch/install_yunohost | bash
+    $ curl https://raw.githubusercontent.com/liberodark/install_script/buster-experimental/install_yunohost | bash
 
 If something goes wrong, you can check the installation logs saved in ```/var/log/yunohost-installation.log```
 
